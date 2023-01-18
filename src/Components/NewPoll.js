@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
+import './style.css';
 
 const NewPoll = (props) => {
   const candidateName1 = useRef();
@@ -36,8 +37,10 @@ const NewPoll = (props) => {
   };
 
   return (
-    <Container style={{ marginTop: "10px" }}>
-      <Form>
+    <Container className="c">
+    <div className="card">
+    <Form className="from">
+      <p className="title-p">New Poll</p>
         <Form.Group className='mb-3'>
           <Form.Label>Candidiate 1 Name</Form.Label>
           <Form.Control
@@ -80,9 +83,11 @@ const NewPoll = (props) => {
         disabled={disableButton}
         onClick={sendToBlockChain}
         variant='primary'
+        className="button"
       >
         Submit
       </Button>
+    </div>
     </Container>
   );
 };

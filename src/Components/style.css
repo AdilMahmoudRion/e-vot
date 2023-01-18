@@ -1,0 +1,64 @@
+.c {
+  min-height: 95vh;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.prompt {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.card {
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+}
+
+.images {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+.vote {
+  text-align: center;
+  padding: 30px;
+  font-size: 40px;
+  font-weight: 700;
+}
+.from {
+  width: 40vw;
+}
+.button {
+  width: fit-content;
+  padding: 10px 40px;
+}
+.title-p {
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 20px;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  background-color: white;
+  border-radius: 100%;
+}

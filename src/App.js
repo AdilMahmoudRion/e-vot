@@ -31,7 +31,7 @@ export default function App() {
     <Router>
       <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
         <Container>
-          <Navbar.Brand href='/'>
+          <Navbar.Brand href='/' className="fw-bold">
            PRIHIM
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
