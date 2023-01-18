@@ -87,7 +87,7 @@ const PollingStation = (props) => {
                 <div className="vote">{candidate1Votes}</div>
               </Row>
             ) : null}
-            <Row>
+            <Row className="b1" >
               <Button disabled={buttonStatus} onClick={() => addVote(0)}>
                 Vote
               </Button>
@@ -107,7 +107,7 @@ const PollingStation = (props) => {
                 <div className="vote">{candidate2Votes}</div>
               </Row>
             ) : null}
-            <Row className="justify-content-center d-flex">
+            <Row className="b1">
               <Button disabled={buttonStatus} onClick={() => addVote(1)}>
                 Vote
               </Button>
