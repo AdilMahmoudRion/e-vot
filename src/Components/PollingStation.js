@@ -73,7 +73,8 @@ const PollingStation = (props) => {
   return (
     <Container className="c">
       <div className="card">
-      <Row className="">
+      <Row className="main-row">
+      <p className="title-p">{prompt}</p>
         <Col className="column">
           <Container>
             <Row>
@@ -93,9 +94,7 @@ const PollingStation = (props) => {
             </Row>
           </Container>
         </Col>
-        <Col className="column">
-          <div className="prompt">{prompt}</div>
-        </Col>
+        
         <Col className="column">
           <Container>
             <Row>

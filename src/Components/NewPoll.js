@@ -42,7 +42,7 @@ const NewPoll = (props) => {
     <Form className="from">
       <p className="title-p">New Poll</p>
         <Form.Group className='mb-3'>
-          <Form.Label>Candidiate 1 Name</Form.Label>
+          <Form.Label className="">Candidiate 1 Name</Form.Label>
           <Form.Control
             ref={candidateName1}
             placeholder='Enter Candidate Name'
@@ -50,7 +50,7 @@ const NewPoll = (props) => {
         </Form.Group>
 
         <Form.Group className='mb-3'>
-          <Form.Label>Candidate 1 Image URL</Form.Label>
+          <Form.Label className="">Candidate 1 Image URL</Form.Label>
           <Form.Control
             ref={candidateName1URL}
             placeholder='enter Image URL'
@@ -58,7 +58,7 @@ const NewPoll = (props) => {
         </Form.Group>
 
         <Form.Group className='mb-3'>
-          <Form.Label>Candidiate 2 Name</Form.Label>
+          <Form.Label className="">Candidiate 2 Name</Form.Label>
           <Form.Control
             ref={candidateName2}
             placeholder='Enter Candidate Name'
@@ -66,7 +66,7 @@ const NewPoll = (props) => {
         </Form.Group>
 
         <Form.Group className='mb-3'>
-          <Form.Label>Candidate 2 Image URL</Form.Label>
+          <Form.Label className="">Candidate 2 Image URL</Form.Label>
           <Form.Control
             ref={candidateName2URL}
             placeholder='enter Image URL'
