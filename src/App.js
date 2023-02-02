@@ -15,6 +15,7 @@ import PollingStation from "./Components/PollingStation";
 import BlockVoteLogo from "./assets/blockvotelogo.svg";
 
 import getConfig from "./config";
+import Check from "./Components/Check";
 const { networkId } = getConfig(process.env.NODE_ENV || "development");
 
 export default function App() {
@@ -38,7 +39,8 @@ export default function App() {
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='mx-auto'></Nav>
             <Nav>
-              <Nav.Link href='/NewPoll'>Create New Poll</Nav.Link>
+             
+              <Nav.Link href='/NewPoll'>Create New Vote</Nav.Link>
               <Nav.Link className="btn btn-primary text-light" onClick={window.accountId === "" ? login : logout}>
                 {window.accountId === "" ? "Login" : window.accountId}
               </Nav.Link>
@@ -56,6 +58,9 @@ export default function App() {
         </Route>
         <Route exact path='/NewPoll'>
           <NewPoll />
+        </Route>
+        <Route exact path='/check'>
+          <Check />
         </Route>
       </Switch>
     </Router>

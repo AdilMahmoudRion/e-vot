@@ -19,8 +19,8 @@ const Home = (props) => {
         <thead>
           <tr>
             <th>#</th>
-            <th>List of Polls</th>
-            <th>Go to Poll</th>
+            <th>List of Elections</th>
+            <th>Go to Valet</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@ const Home = (props) => {
                 <td>
                   {" "}
                   <Button onClick={() => props.changeCandidates(el)}>
-                    Go to Poll
+                    Go to Valet
                   </Button>
                 </td>
               </tr>

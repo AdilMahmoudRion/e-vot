@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row, Navbar, Nav, NavDropdown  } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import LoadingCircles from "../assets/loadingcircles.svg";
-import "./style.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const PollingStation = (props) => {
+function Check() {
   const [candidate1URL, changeCandidate1Url] = useState(LoadingCircles);
   const [candidate2URL, changeCandidate2Url] = useState(LoadingCircles);
   const [showresults, changeResultsDisplay] = useState(false);
+  console.log("🚀 ~ file: Check.js:9 ~ Check ~ showresults", showresults)
   const [buttonStatus, changeButtonStatus] = useState(false);
+  console.log("🚀 ~ file: Check.js:10 ~ Check ~ buttonStatus", buttonStatus)
   const [candidate1Votes, changeVote1] = useState("--");
+  console.log("🚀 ~ file: Check.js:11 ~ Check ~ candidate1Votes", candidate1Votes)
   const [candidate2Votes, changeVote2] = useState("--");
+  console.log("🚀 ~ file: Check.js:12 ~ Check ~ candidate2Votes", candidate2Votes)
   const [prompt, changePrompt] = useState("--");
+  console.log("🚀 ~ file: Check.js:17 ~ Check ~ prompt", prompt)
 
   useEffect(() => {
     const getInfo = async () => {
@@ -43,6 +46,9 @@ const PollingStation = (props) => {
         prompt: localStorage.getItem("prompt"),
         user: window.accountId,
       });
+      console.log("🚀 ~ file: Check.js:49 ~ getInfo ~ didUserVote", didUserVote)
+
+      
 
       changeResultsDisplay(didUserVote);
       changeButtonStatus(didUserVote);
@@ -62,6 +68,7 @@ const PollingStation = (props) => {
       prompt: localStorage.getItem("prompt"),
       user: window.accountId,
     });
+    console.log(window.accountId)
 
     let voteCount = await window.contract.getVotes({
       prompt: localStorage.getItem("prompt"),
@@ -70,60 +77,19 @@ const PollingStation = (props) => {
     changeVote2(voteCount[1]);
     changeResultsDisplay(true);
   };
-
   return (
-    <Container className="c">
-      <div className="card">
-      <Row className="main-row">
-      <p className="title-p">{prompt}</p>
-        <Col className="column">
-          <Container>
-            <Row>
-              <div>
-                <img className="images" src={candidate1URL}></img>
-              </div>
-            </Row>
-            {/* {showresults ? (
-              <Row>
-                <div className="vote">{candidate1Votes}</div>
-              </Row>
-            ) : null} */}
-            <Row className="b1" >
-              <Button disabled={buttonStatus} onClick={() => addVote(0)}>
-                Vote
-              </Button>
-            </Row>
-          </Container>
-        </Col>
-        
-        <Col className="column">
-          <Container>
-            <Row>
-              <div>
-                <img className="images" src={candidate2URL}></img>
-              </div>
-            </Row>
-            {/* {showresults ? (
-              <Row className="">
-                <div className="vote">{candidate2Votes}</div>
-              </Row>
-            ) : null} */}
-            <Row className="b1">
-              <Button disabled={buttonStatus} onClick={() => addVote(1)}>
-                Vote
-              </Button>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-<div>
-<Nav.Link href='/check'>Check Status</Nav.Link>
-</div>
-
-
+    <section>
+      <h1>check</h1>
+      <div>
+        {showresults ? (
+          <Row>
+            <div className="vote">{candidate1Votes}</div>
+            <div className="vote">{candidate2Votes}</div>
+          </Row>
+        ) : null}
       </div>
-    </Container>
+    </section>
   );
-};
+}
 
-export default PollingStation;
+export default Check;
