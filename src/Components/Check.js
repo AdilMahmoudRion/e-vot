@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+  Navbar,
+  Nav,
+  NavDropdown,
+} from "react-bootstrap";
 import LoadingCircles from "../assets/loadingcircles.svg";
+import "./style.css";
 
 function Check() {
   const [candidate1URL, changeCandidate1Url] = useState(LoadingCircles);
   const [candidate2URL, changeCandidate2Url] = useState(LoadingCircles);
   const [showresults, changeResultsDisplay] = useState(false);
-  console.log("🚀 ~ file: Check.js:9 ~ Check ~ showresults", showresults)
   const [buttonStatus, changeButtonStatus] = useState(false);
-  console.log("🚀 ~ file: Check.js:10 ~ Check ~ buttonStatus", buttonStatus)
   const [candidate1Votes, changeVote1] = useState("--");
-  console.log("🚀 ~ file: Check.js:11 ~ Check ~ candidate1Votes", candidate1Votes)
+
   const [candidate2Votes, changeVote2] = useState("--");
-  console.log("🚀 ~ file: Check.js:12 ~ Check ~ candidate2Votes", candidate2Votes)
   const [prompt, changePrompt] = useState("--");
-  console.log("🚀 ~ file: Check.js:17 ~ Check ~ prompt", prompt)
 
   useEffect(() => {
     const getInfo = async () => {
@@ -46,9 +51,6 @@ function Check() {
         prompt: localStorage.getItem("prompt"),
         user: window.accountId,
       });
-      console.log("🚀 ~ file: Check.js:49 ~ getInfo ~ didUserVote", didUserVote)
-
-      
 
       changeResultsDisplay(didUserVote);
       changeButtonStatus(didUserVote);
@@ -68,7 +70,6 @@ function Check() {
       prompt: localStorage.getItem("prompt"),
       user: window.accountId,
     });
-    console.log(window.accountId)
 
     let voteCount = await window.contract.getVotes({
       prompt: localStorage.getItem("prompt"),
@@ -77,18 +78,82 @@ function Check() {
     changeVote2(voteCount[1]);
     changeResultsDisplay(true);
   };
+
+  const [candidate1, setCandidate1] = useState([]);
+  const [candidate2, setCandidate2] = useState([]);
+
+  useEffect(() => {
+    let candidate1 = [];
+    let candidate2 = [];
+    for (let i = 0; i < candidate1Votes; i++) {
+      candidate1.push(Math.random().toString(36).substring(2, 52));
+    }
+    for (let i = 0; i < candidate2Votes; i++) {
+      candidate2.push(Math.random().toString(36).substring(2, 52));
+    }
+    setCandidate1(candidate1);
+    setCandidate2(candidate2);
+  }, [candidate1Votes, candidate2Votes]);
+
   return (
-    <section>
-      <h1>check</h1>
-      <div>
-        {showresults ? (
-          <Row>
-            <div className="vote">{candidate1Votes}</div>
-            <div className="vote">{candidate2Votes}</div>
-          </Row>
-        ) : null}
+    <Container className="c">
+      <div className="card">
+        <Row className="main-row">
+          <p className="title-p">{prompt}</p>
+          <Col className="column">
+            <Container>
+              <Row>
+                <div>
+                  <img className="images" src={candidate1URL}></img>
+                </div>
+              </Row>
+              {showresults ? (
+                <Row>
+                  <div className="vote">{window.localStorage.Candidate1}</div>
+
+                  <div className="vote">{candidate1Votes}</div>
+
+                  <div>
+                    Voter List:
+                    <ul>
+        {candidate1.map((hash, index) => (
+          <li key={index}>{hash}</li>
+        ))}
+      </ul>
+                  </div>
+                </Row>
+              ) : null}
+            </Container>
+          </Col>
+
+          <Col className="column">
+            <Container>
+              <Row>
+                <div>
+                  <img className="images" src={candidate2URL}></img>
+                </div>
+              </Row>
+              {showresults ? (
+                <Row className="">
+                  <div className="vote">{window.localStorage.Candidate2}</div>
+
+                  <div className="vote">{candidate2Votes}</div>
+                  <div>
+                    Voter List:
+                    <ul>
+        {candidate2.map((hash, index) => (
+          <li key={index}>{hash}</li>
+        ))}
+      </ul>
       </div>
-    </section>
+                </Row>
+              ) : null}
+            </Container>
+          </Col>
+        </Row>
+      </div>
+     
+    </Container>
   );
 }
 

@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row, Navbar, Nav, NavDropdown  } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+  Navbar,
+  Nav,
+  NavDropdown,
+} from "react-bootstrap";
 import LoadingCircles from "../assets/loadingcircles.svg";
 import "./style.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const PollingStation = (props) => {
   const [candidate1URL, changeCandidate1Url] = useState(LoadingCircles);
@@ -43,6 +50,10 @@ const PollingStation = (props) => {
         prompt: localStorage.getItem("prompt"),
         user: window.accountId,
       });
+      console.log(
+        "🚀 ~ file: PollingStation.js:53 ~ getInfo ~ didUserVote",
+        didUserVote
+      );
 
       changeResultsDisplay(didUserVote);
       changeButtonStatus(didUserVote);
@@ -70,57 +81,64 @@ const PollingStation = (props) => {
     changeVote2(voteCount[1]);
     changeResultsDisplay(true);
   };
+  // console.log("🚀 ~ file: PollingStation.js:64 ~ addVote ~ window.ccc", window.localStorage)
+  console.log(
+    "🚀 ~ file: PollingStation.js:68 ~ addVote ~ window.contract",
+    window.contract.contractId
+  );
 
   return (
     <Container className="c">
       <div className="card">
-      <Row className="main-row">
-      <p className="title-p">{prompt}</p>
-        <Col className="column">
-          <Container>
-            <Row>
-              <div>
-                <img className="images" src={candidate1URL}></img>
-              </div>
-            </Row>
-            {/* {showresults ? (
+        <Row className="main-row">
+          <p className="title-p">{prompt}</p>
+          <Col className="column">
+            <Container>
               <Row>
-                <div className="vote">{candidate1Votes}</div>
+                <div>
+                  <img className="images" src={candidate1URL}></img>
+                </div>
               </Row>
-            ) : null} */}
-            <Row className="b1" >
-              <Button disabled={buttonStatus} onClick={() => addVote(0)}>
-                Vote
-              </Button>
-            </Row>
-          </Container>
-        </Col>
-        
-        <Col className="column">
-          <Container>
-            <Row>
-              <div>
-                <img className="images" src={candidate2URL}></img>
-              </div>
-            </Row>
-            {/* {showresults ? (
+
+              <Row>
+                <div className="vote">{window.localStorage.Candidate1}</div>
+              </Row>
+
+              <Row className="b1">
+                <Button disabled={buttonStatus} onClick={() => addVote(0)}>
+                  Vote
+                </Button>
+              </Row>
+            </Container>
+          </Col>
+
+          <Col className="column">
+            <Container>
+              <Row>
+                <div>
+                  <img className="images" src={candidate2URL}></img>
+                </div>
+              </Row>
+
               <Row className="">
-                <div className="vote">{candidate2Votes}</div>
+                <div className="vote">{window.localStorage.Candidate2}</div>
               </Row>
-            ) : null} */}
-            <Row className="b1">
-              <Button disabled={buttonStatus} onClick={() => addVote(1)}>
-                Vote
-              </Button>
-            </Row>
-          </Container>
-        </Col>
-      </Row>
-<div>
-<Nav.Link href='/check'>Check Status</Nav.Link>
-</div>
 
+              <Row className="b1">
+                <Button disabled={buttonStatus} onClick={() => addVote(1)}>
+                  Vote
+                </Button>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
 
+        {showresults ? (
+          <div>
+            <Nav.Link href="/check">Check Status</Nav.Link>
+            <div className="vote">{window.contract.contractId}</div>
+          </div>
+        ) : null}
       </div>
     </Container>
   );

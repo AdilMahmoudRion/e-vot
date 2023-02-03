@@ -16,13 +16,16 @@ export async function initContract() {
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
   window.walletConnection = new WalletConnection(near);
+  console.log("🚀 ~ file: utils.js:19 ~ initContract ~ window.walletConnection", window.walletConnection)
 
   // Getting the Account ID. If still unauthorized, it's just empty string
   window.accountId = window.walletConnection.getAccountId();
-
+ 
   // Initializing our contract APIs by contract name and configuration
   window.contract = await new Contract(
     window.walletConnection.account(),
+   
+    
     nearConfig.contractName,
     {
       // View methods are read only. They don't modify the state, but usually return some value.
